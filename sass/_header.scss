@@ -1,6 +1,68 @@
 .header{
-    background-color: $color-grey-dark-1;
+    background-image: linear-gradient(rgba($color-secondary,.75), rgba($color-secondary,.75)), url(/img/hero.jpeg);
+    background-position: center;
+    grid-column: full-start/col-end 6;
+    color: white; 
+    padding: 8rem;  
+    padding-top: 4rem;
+    line-height: 1; 
 
-    grid-column: full-start/center-end;
-    grid-row: 1/2;
+
+    //grid-column: full-start/center-end;
+    //grid-row: 1/2;
+
+    display: grid;
+    grid-template-rows: 1fr min-content min-content 1fr min-content;
+    //justify-content: center; 
+    grid-gap: 1.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        grid-column: 1/-1;
+    }    
+
+    @media only screen and (max-width: $bp-small) {
+        padding: 5rem;
+    }
+
+    &__logo {
+        height: 3rem;
+        grid-column: 1/2;
+        justify-self: center;
+    }
+
+    &__seenon-logos{
+        display: grid;
+        grid-template-columns: repeat(4,1fr); //  min-content cant be used for images as its min content is 0 width so image disappers till last px
+        grid-column-gap: 3rem; 
+        justify-items: center; 
+         align-items: center;
+       img {
+           max-height: 2.5rem;  //as the column width increases the the width of image is 100% of it so heagit increses out of our requirement .. so we set its max height and stops its growth
+           max-width: 100%;    // images adopt to the grid size with width ... so as the grid colomn decreases in size then image size automaticlly decreases
+           filter: brightness(70%);  
+       }
+   }
+
+   &__btn {
+    //align-self: flex-start;    
+    align-self: start; 
+    justify-self: start; 
+    text-align: center;
+}
+
+&__seenon-text {
+    display: grid;  
+    grid-template-columns: 1fr max-content 1fr;  
+    color: $color-grey-light-2; 
+    align-items: center;
+
+    &::before,
+    &::after {
+        align-self: center;   
+        content: "";     
+        display: inline-block;
+        height: .1rem; 
+        background-color: currentColor; 
+    }
+}
 }
